@@ -40,6 +40,7 @@ public class AppTest
      */
     public void testApp()
     {
+    	downloadExtension("");
     	
       File files=new File(System.getProperty("user.dir"));
   	for(File f:files.listFiles())
