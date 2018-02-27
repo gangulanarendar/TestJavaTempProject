@@ -45,12 +45,9 @@ public class AppTest
 			printfileNames(f);
 			
 		}
-		 try {
-			System.out.println("Top level files "+f.getCanonicalFile().getCanonicalPath());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			System.out.println("Top level files "+f.getAbsolutePath());
+		
 	}
   	
     	
