@@ -1,7 +1,11 @@
 package com.circleci.TestJavaTempProject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -73,4 +77,23 @@ public class AppTest
 			}
     	}
     }
+    
+	public static void downloadExtension(String extensionName) {
+		
+		 String file = System.getProperty("user.dir") + "/ExtensionResouces/CRX";
+		
+		 System.out.println("System.getProperty(user.dir) :"+System.getProperty("user.dir"));
+		 String	filePath = file.replace("CRX", "letznav_editor.crx");
+		System.out.println("filePath "+filePath);
+		try {
+			URL url = new URL("https://letznav-testing.herokuapp.com/api/public/admin/extensions/editor/letznav_editor.crx");
+			ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+			FileOutputStream fos = new FileOutputStream(filePath);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			fos.close();
+			rbc.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
